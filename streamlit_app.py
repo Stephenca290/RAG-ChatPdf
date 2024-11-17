@@ -33,7 +33,7 @@ Follow these simple steps to interact with the chatbot:
 
 # This is the first API key input; no need to repeat it in the main function.
 api_key = st.text_input("Enter your Google API Key:", type="password", key="api_key_input")
-new_db = FAISS.load_local("faiss_index", embeddings,allow_dangerous_deserialization=True)
+new_db = FAISS.load_local("faiss_index", allow_dangerous_deserialization=True)
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
