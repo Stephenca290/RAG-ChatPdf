@@ -33,6 +33,9 @@ Follow these simple steps to interact with the chatbot:
 
 # This is the first API key input; no need to repeat it in the main function.
 api_key = st.text_input("Enter your Google API Key:", type="password", key="api_key_input")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_key)
+new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -51,7 +54,6 @@ def get_vector_store(text_chunks, api_key):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_key)
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
-new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 def get_conversational_chain():
     prompt_template = """
