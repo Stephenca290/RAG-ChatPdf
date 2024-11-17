@@ -46,12 +46,12 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     return chunks
     
-new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 def get_vector_store(text_chunks, api_key):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_key)
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
+new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 def get_conversational_chain():
     prompt_template = """
