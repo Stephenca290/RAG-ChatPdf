@@ -20,7 +20,7 @@ st.markdown("""
 
 
 # This is the first API key input; no need to repeat it in the main function.
-api_key = st.secrets("api_key")
+api_key = st.secrets["api_key"]
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
